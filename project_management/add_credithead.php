@@ -128,10 +128,10 @@ $myCalendar->setYearInterval(1960, 2026);
 $myCalendar->writeScript();
 echo ' ';
 
- echo '<br><br><b> AMOUNT </b><br><br>';
- echo "<input type = \"number\" name = \"amount\ required" />
+echo '<br><br><b> AMOUNT </b><br><br>';
+echo "<input required type = \"number\" name = \"amount\" />
 
- <br>";
+<br>";
 
 
   echo '<br><br><b>SUB - HEAD </b><br>';

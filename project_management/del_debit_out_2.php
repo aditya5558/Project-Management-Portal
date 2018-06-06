@@ -42,27 +42,29 @@ and open the template in the editor.
    $i=1;
    $num_true_times=0;
    
+   $order_no = $_GET['order_no'];
+//    echo($order_no);
    while($i<=$x)
    {
        if(isset($_GET[$i]))
        {   
            
-         // echo "$i <br>"; 
+        //  echo "$i <br>"; 
            $j=$i-1-$num_true_times;
            ++$num_true_times;
            
-            $q2="SELECT * FROM debit_head LIMIT $j,1";
+            $q2="SELECT * FROM debit_head WHERE debit_key=$order_no LIMIT $j,1";
             $res2=mysqli_query($con,$q2);
             
-//            if(!$res2)
-//                echo"true<br>";
-//            else
-//                echo "false<br>";
+        //    if(!$res2)
+        //        echo"true<br>";
+        //    else
+        //        echo "false<br>";
             
             $rs= mysqli_fetch_array($res2);
             
             $gsancorderno=$rs['debit_key'];
-           // echo"$gsancorderno <br>";
+        //    echo"$gsancorderno <br>";
             $gdate=$rs['Date_of_debit'];
             $gmemo=$rs['Memo'];
              $gsub=$rs['SubHead'];
@@ -74,7 +76,7 @@ and open the template in the editor.
             $gamount=$rs['Amount'];
             
             $query="DELETE from `debit_head` WHERE debit_key = '$gsancorderno' AND  Date_of_debit = '$gdate' AND  Amount = '$gamount' AND Memo = '$gmemo' AND SubHead = '$gsub' ";
-            
+            // echo($query);
             $q3="SELECT * FROM `expenditure` WHERE sanc_key = '$gsancorderno' AND month = '$gmonth' AND year = '$gyear' ";
                  $res3=mysqli_query($con,$q3);
             

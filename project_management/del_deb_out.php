@@ -130,7 +130,9 @@ tr:nth-child(even){background-color: #f2f2f2}
 }
 
   echo "</table>";
+  echo '<input type="text" name="order_no" value="'.$gsancorderno.'" style="display: none;" >';
         ?>
+
                     <button class="button" style="vertical-align:middle"><span>DELETE</span></button>
               
               
