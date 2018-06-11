@@ -50,7 +50,7 @@ and open the template in the editor.
            
            $j=$i-1-$num_true_times;
            $num_true_times++;            
-           $q2="SELECT * FROM credit_head WHERE Credit_key=$order_no LIMIT $j,1";
+           $q2="SELECT * FROM credit_head WHERE Credit_key= '$order_no' LIMIT $j,1";
             $res2=mysqli_query($con,$q2);
             
             $rs= mysqli_fetch_array($res2);
