@@ -80,7 +80,7 @@ require_once('classes/tc_calendar.php');
     </head>
     <body>
             <center><b> <font size="10" >ACCOUNT STATEMENT</font></b></center><br><br><br><br><br>
-        <form name="finstat" action="finstat_out_modified.php">
+        <form name="finstat" action="finstat_out_latest.php">
             
             
         <?php
