@@ -54,10 +54,9 @@ and open the template in the editor.
        
         //$query= "Insert into managedata (ProjSancAuth,Subagency,AddressSancAuth,ProjTitle,Sancorderno,SancDate,Dept,PrincInv,CoCord,Cost,StartDate,EndDate,Dateofrec,Duration,Expenditure,Interest,DebitHead,Status) values( $gsanc,$gsubagency,$gaddsanc ,$gprojtitle,$gsancorderno,$fsancDate,$gdept,$gprincinv,$gcocord, $gcost,$fstartDate, $fendDate, $fgrantDate,$gdur,$gexp,$gint,$gdebit, $gstatus )";
       $result = mysqli_query($con,"SELECT * FROM managedata");
-$num_rows = mysqli_num_rows($result);
-$num_rows=$num_rows+1;
+
 //echo"$num_rows";
-               $query= "INSERT INTO `managedata` (`Sl_No`,`ProjSancAuth`,`Subagency`,`AddressSancAuth`,`ProjTitle`,`Sancorderno`,`SancDate`,`Dept`,`PrincInv`,`CoCord`,`Cost`,`StartDate`,`EndDate`,`Dateofrec`,`Duration`,`Status`) VALUES('$num_rows','$gsanc','$gsubagency','$gaddsanc' ,'$gprojtitle','$gsancorderno','$fsancDate','$gdept','$gprincinv','$gcocord', '$gcost','$fstartDate', '$fendDate', '$fgrantDate','$gdur','$gstatus' )";
+               $query= "INSERT INTO `managedata` (`ProjSancAuth`,`Subagency`,`AddressSancAuth`,`ProjTitle`,`Sancorderno`,`SancDate`,`Dept`,`PrincInv`,`CoCord`,`Cost`,`StartDate`,`EndDate`,`Dateofrec`,`Duration`,`Status`) VALUES('$gsanc','$gsubagency','$gaddsanc' ,'$gprojtitle','$gsancorderno','$fsancDate','$gdept','$gprincinv','$gcocord', '$gcost','$fstartDate', '$fendDate', '$fgrantDate','$gdur','$gstatus' )";
  
 if(! $result = mysqli_query($con,$query ))
 {
