@@ -35,11 +35,14 @@ and open the template in the editor.
   mysqli_set_charset($con, 'utf-8');
   mysqli_select_db($con, "management");
   $gsancorderno = $_COOKIE['gid'];
-  
-  for ($i=0;$i<$_COOKIE["num_rows"];++$i)
+//   echo $gsancorderno;
+//   echo '<br>';
+//   echo $_GET['num_rows'];
+//   echo $_COOKIE['num_rows'];
+  for ($i=0;$i<$_GET['num_rows'];++$i)
 
   {          
-  	
+        // echo "in loop!";
   			  $year = $_GET["y".$i];
   			  $interest = $_GET["i".$i];
               $q6="UPDATE `interest` SET `interest`='$interest' WHERE sanc_key REGEXP '$gsancorderno' AND year = $year ";

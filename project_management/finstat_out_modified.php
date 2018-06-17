@@ -208,9 +208,9 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<b><font size=\"3\"> GRANTS RECEIVED : ";
             //echo"HI";
             if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
         else {
-              $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+              $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syear";
         }
         
             $resulte= mysqli_query($con, $qrye);
@@ -294,9 +294,9 @@ tr:nth-child(even){background-color: #f2f2f2}
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
             //echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
               else
-                        $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+                        $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syear";
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);
             if($n1==0)
@@ -316,7 +316,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             {
                 
                 
-                $qi="Select * FROM interest WHERE sanc_key REGEXP '$gsancorderno' AND year REGEXP '$syear'";
+                $qi="Select * FROM interest WHERE sanc_key REGEXP '$gsancorderno' AND year = $syear ";
                 $resulte= mysqli_query($con, $qi);
                 $n1= mysqli_num_rows($resulte);
 
@@ -336,7 +336,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                 else
                 {
 
-                  $qm="Select * FROM modify WHERE sanc_key REGEXP '$gsancorderno' AND year REGEXP '$syear'";
+                  $qm="Select * FROM modify WHERE sanc_key REGEXP '$gsancorderno' AND year = $syear";
                   $resultex= mysqli_query($con, $qm);
                   // $n1= mysqli_num_rows($resultex);
 
@@ -455,9 +455,9 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<b><font size=\"3\"> GRANTS RECEIVED : ";
             //echo"HI";
             if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
         else {
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syear";
   }
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);
@@ -536,9 +536,9 @@ tr:nth-child(even){background-color: #f2f2f2}
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
             //echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
         else {
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syear";
   }
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);
@@ -560,7 +560,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             if($smindex==11)
             {
                 
-                $qi="Select * FROM interest WHERE sanc_key REGEXP '$gsancorderno' AND year REGEXP '$syear'";
+                $qi="Select * FROM interest WHERE sanc_key REGEXP '$gsancorderno' AND year = $syear";
                 $resulte= mysqli_query($con, $qi);
                 $n1= mysqli_num_rows($resulte);
 
@@ -581,7 +581,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                 else
                 {
 
-                  $qm="Select * FROM modify WHERE sanc_key REGEXP '$gsancorderno' AND year REGEXP '$syear'";
+                  $qm="Select * FROM modify WHERE sanc_key REGEXP '$gsancorderno' AND year = $syear";
                   $resultex= mysqli_query($con, $qm);
                   // $n1= mysqli_num_rows($resultex);
 

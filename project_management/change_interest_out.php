@@ -135,7 +135,9 @@ tr:nth-child(even){background-color: #f2f2f2}
 
     }
 
-    setcookie("num_rows",$num_row);
+    // echo $num_row;
+    echo '<input type="text" name="num_rows" value="'.$num_row.'" style="display: none;" >';
+    // setcookie("num_rows",$num_row);
     setcookie("gid",$gsancorderno);
 
     echo "</table>";

@@ -91,15 +91,63 @@ tr:nth-child(even){background-color: #f2f2f2}
 // $q2 = "SELECT * FROM `credit_head` A, `debit_head` B where A.credit_key REGEXP '$gsancorderno' and 
 //         B.debit_key REGEXP '$gsancorderno' ORDER BY A.Date_of_debit,B.Date_of_credit";
 
-$q2 = "select concat(a.Date_of_credit,b.Date_of_debit) as new_date from credit_head a,debit_head b where a.credit_key = sanc_order_no and b.debit_key = sance_order_no and a.credit_key = b.debit_key order by new_date";
+$q2 = "SELECT credit_key,'' as debit_key,subhead,amount,memo, Date_of_credit as
+ new_date FROM credit_head WHERE Credit_key REGEXP '$gsancorderno' UNION
+  SELECT '' as credit_key, debit_key,subhead,amount,memo,Date_of_debit as new_date 
+  FROM debit_head WHERE debit_key REGEXP '$gsancorderno' ORDER BY `new_date` ASC";
 
 $result2= mysqli_query($con, $q2);
 
-  while($rs=mysqli_fetch_array($result2)){
 
-    echo 'value="'.$rs['debit_key'].'">'.$rs['Date_of_debit']."-".$rs['Amount'];
-    echo '<br>';
+echo "<b><font size=\"3\"> CREDIT HEADS </font></b><br>";
+echo "<table>   
+     <tr>
+     <th>Date</th>
+     <th>Amount</th>
+     <th>Memo</th>
+     <th>SubHead</th>
+   </tr></table>";
 
+while($rs=mysqli_fetch_array($result2)){
+   
+   if($rs[1]==NULL)
+   {
+   echo "<table>
+   <tr>
+     <td>$rs[5]</td>
+     <td>$rs[3]</td>
+     <td>$rs[4]</td>
+     <td>$rs[2]</td>
+   </tr>
+ </table>";
+   }
+}
+
+$result2= mysqli_query($con, $q2);
+
+echo "<b><font size=\"3\"> DEBIT HEADS </font></b><br>";
+echo "<table>   
+           <tr>
+     <th>Date</th>
+     <th>Amount</th>
+     <th>Memo</th>
+     <th>SubHead</th>
+   </tr></table>";
+
+
+while($rs=mysqli_fetch_array($result2)){
+   
+   if($rs[0]==NULL)
+   {
+   echo "<table>
+   <tr>
+     <td>$rs[5]</td>
+     <td>$rs[3]</td>
+     <td>$rs[4]</td>
+     <td>$rs[2]</td>
+   </tr>
+ </table>";
+   }
 }
  
 
