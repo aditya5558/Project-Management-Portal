@@ -84,7 +84,7 @@ function tableme($result){
         $toDate2 = isset($_REQUEST["date6"]) ? $_REQUEST["date6"] : "";
 //        
 //        
-        $query= "SELECT * FROM managedata WHERE Sancorderno REGEXP '$gsancorderno' AND ProjTitle REGEXP '$gprojtitle' AND Status REGEXP '$gstatus'  AND Dept REGEXP '$gdept' AND PrincInv REGEXP '$gprincinv' AND Subagency REGEXP '$gsubagency' AND CoCord REGEXP '$gcocord' AND Duration REGEXP '$gduration' AND SancDate BETWEEN '$theDate' AND '$toDate' AND StartDate BETWEEN '$theDate1' AND '$toDate1' AND EndDate BETWEEN '$theDate2' AND '$toDate2'" ;
+        $query= "SELECT * FROM managedata WHERE Sancorderno = '$gsancorderno' AND ProjTitle REGEXP '$gprojtitle' AND Status REGEXP '$gstatus'  AND Dept REGEXP '$gdept' AND PrincInv REGEXP '$gprincinv' AND Subagency REGEXP '$gsubagency' AND CoCord REGEXP '$gcocord' AND Duration REGEXP '$gduration' AND SancDate BETWEEN '$theDate' AND '$toDate' AND StartDate BETWEEN '$theDate1' AND '$toDate1' AND EndDate BETWEEN '$theDate2' AND '$toDate2'" ;
         $result = mysqli_query($con,$query );
         $fields_num = mysqli_num_fields($result);
 

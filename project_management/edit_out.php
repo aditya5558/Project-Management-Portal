@@ -105,7 +105,7 @@ echo '<br>';
   $gsancorderno=$_GET["sancorderno"];
  // $gyear=$_GET["year"];
   
-  $q1="SELECT * FROM `managedata` WHERE Sancorderno REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `managedata` WHERE Sancorderno = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
   
   $rs=mysqli_fetch_array($result);

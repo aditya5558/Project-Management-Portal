@@ -55,7 +55,7 @@ tr:nth-child(even){background-color: #f2f2f2}
   $gsancorderno=$_GET["sancorderno"];
  // $gyear=$_GET["year"];
   
-  $q1="SELECT * FROM `managedata` WHERE Sancorderno REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `managedata` WHERE Sancorderno = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
   
   $rs=mysqli_fetch_array($result);
@@ -92,65 +92,77 @@ tr:nth-child(even){background-color: #f2f2f2}
 //         B.debit_key REGEXP '$gsancorderno' ORDER BY A.Date_of_debit,B.Date_of_credit";
 
 $q2 = "SELECT credit_key,'' as debit_key,subhead,amount,memo, Date_of_credit as
- new_date FROM credit_head WHERE Credit_key REGEXP '$gsancorderno' UNION
+ new_date FROM credit_head WHERE Credit_key = '$gsancorderno' UNION
   SELECT '' as credit_key, debit_key,subhead,amount,memo,Date_of_debit as new_date 
-  FROM debit_head WHERE debit_key REGEXP '$gsancorderno' ORDER BY `new_date` ASC";
+  FROM debit_head WHERE debit_key = '$gsancorderno' ORDER BY `new_date` ASC";
 
 $result2= mysqli_query($con, $q2);
 
 
-echo "<b><font size=\"3\"> CREDIT HEADS </font></b><br>";
-echo "<table>   
-     <tr>
-     <th>Date</th>
-     <th>Amount</th>
-     <th>Memo</th>
-     <th>SubHead</th>
-   </tr></table>";
+// echo "<b><font size=\"3\"> CREDIT HEADS </font></b><br>";
+// echo "<table>   
+//      <tr>
+//      <th>Date</th>
+//      <th>Amount</th>
+//      <th>Memo</th>
+//      <th>SubHead</th>
+//    </tr></table>";
 
-while($rs=mysqli_fetch_array($result2)){
+// while($rs=mysqli_fetch_array($result2)){
    
-   if($rs[1]==NULL)
-   {
-   echo "<table>
-   <tr>
-     <td>$rs[5]</td>
-     <td>$rs[3]</td>
-     <td>$rs[4]</td>
-     <td>$rs[2]</td>
-   </tr>
- </table>";
-   }
-}
+//    if($rs[1]==NULL)
+//    {
+//    echo "<table>
+//    <tr>
+//      <td>$rs[5]</td>
+//      <td>$rs[3]</td>
+//      <td>$rs[4]</td>
+//      <td>$rs[2]</td>
+//    </tr>
+//  </table>";
+//    }
+// }
 
-$result2= mysqli_query($con, $q2);
+// $result2= mysqli_query($con, $q2);
 
-echo "<b><font size=\"3\"> DEBIT HEADS </font></b><br>";
-echo "<table>   
-           <tr>
-     <th>Date</th>
-     <th>Amount</th>
-     <th>Memo</th>
-     <th>SubHead</th>
-   </tr></table>";
+// echo "<b><font size=\"3\"> DEBIT HEADS </font></b><br>";
+// echo "<table>   
+//            <tr>
+//      <th>Date</th>
+//      <th>Amount</th>
+//      <th>Memo</th>
+//      <th>SubHead</th>
+//    </tr></table>";
 
 
-while($rs=mysqli_fetch_array($result2)){
+// while($rs=mysqli_fetch_array($result2)){
    
-   if($rs[0]==NULL)
-   {
-   echo "<table>
-   <tr>
-     <td>$rs[5]</td>
-     <td>$rs[3]</td>
-     <td>$rs[4]</td>
-     <td>$rs[2]</td>
-   </tr>
- </table>";
-   }
-}
+//    if($rs[0]==NULL)
+//    {
+//    echo "<table>
+//    <tr>
+//      <td>$rs[5]</td>
+//      <td>$rs[3]</td>
+//      <td>$rs[4]</td>
+//      <td>$rs[2]</td>
+//    </tr>
+//  </table>";
+//    }
+// }
  
 
-
-
-
+while($rs=mysqli_fetch_array($result2)){
+   
+    if($rs[1]==NULL)
+    {
+    echo "<table>
+    <tr>
+      <td>$rs[5]</td>
+      <td>$rs[3]</td>
+      <td>$rs[4]</td>
+      <td>$rs[2]</td>
+    </tr>
+  </table>";
+    }
+ }
+ 

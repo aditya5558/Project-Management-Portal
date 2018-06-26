@@ -64,7 +64,7 @@ $month=date("F", strtotime($date));
 $year=date("Y", strtotime($date));
 
 //echo"$month , $year";
-$q1="SELECT * FROM `expenditure` WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key REGEXP '$gsanc'";
+$q1="SELECT * FROM `expenditure` WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key = '$gsanc'";
 $result = mysqli_query($con,$q1);
 $num_rows = mysqli_num_rows($result);
 
@@ -89,7 +89,7 @@ else
     $amount2=$amount1+$gamount;
     
     //echo"$amount1";
-    $q3="UPDATE `expenditure` SET `amount`='$amount2' WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key REGEXP '$gsanc' ";
+    $q3="UPDATE `expenditure` SET `amount`='$amount2' WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key = '$gsanc' ";
     
      if(! $resultt = mysqli_query($con,$q3 ))
                    {
@@ -110,7 +110,7 @@ if ($month=="January" || $month == "February" || $month == "March")
                     else
                     {$year2 = $year;}
 
-                    $q1="SELECT * FROM `modify` WHERE year REGEXP '$year2' AND sanc_key REGEXP '$gsanc' ";
+                    $q1="SELECT * FROM `modify` WHERE year REGEXP '$year2' AND sanc_key = '$gsanc' ";
                     $result = mysqli_query($con,$q1);
                     $num_rows = mysqli_num_rows($result);
 
@@ -127,7 +127,7 @@ if ($month=="January" || $month == "February" || $month == "March")
 
                     {
                       // echo "in else";
-                      $q3="UPDATE `modify` SET `x`=1 WHERE year REGEXP '$year2' AND sanc_key REGEXP '$gsanc'";
+                      $q3="UPDATE `modify` SET `x`=1 WHERE year REGEXP '$year2' AND sanc_key = '$gsanc'";
                       $resultt = mysqli_query($con,$q3 );
 
                     }

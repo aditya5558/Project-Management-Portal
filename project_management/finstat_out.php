@@ -55,7 +55,7 @@ tr:nth-child(even){background-color: #f2f2f2}
   $gsancorderno=$_GET["sancorderno"];
  // $gyear=$_GET["year"];
   
-  $q1="SELECT * FROM `managedata` WHERE Sancorderno REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `managedata` WHERE Sancorderno = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
   
   $rs=mysqli_fetch_array($result);
@@ -68,12 +68,12 @@ tr:nth-child(even){background-color: #f2f2f2}
   echo "<b><font size=\"5\">PRINCIPLE INVESTIGATOR: $pinv </font></b></center><br><br><br>";
   //echo "<b><font size=\"5\">YEAR : $gyear </font></b></center><br><br><br>";
   
-   $q2="SELECT * FROM `debit_head` WHERE debit_key REGEXP '$gsancorderno' ORDER BY `Date_of_debit` ASC";
+   $q2="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit` ASC";
    $result2= mysqli_query($con, $q2);
    $x= mysqli_num_rows($result2);
    $x=$x-1;
    //echo"$x";
-    $q2_1="SELECT * FROM `debit_head` WHERE debit_key REGEXP '$gsancorderno' ORDER BY `Date_of_debit` ASC LIMIT $x,1";
+    $q2_1="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit` ASC LIMIT $x,1";
     $result2_1= mysqli_query($con, $q2_1);
     if($x!=-1)
       {
@@ -85,7 +85,7 @@ tr:nth-child(even){background-color: #f2f2f2}
     
     //echo"$rs2[1]<br><br>";
    
-   $q3="SELECT * FROM `credit_head` WHERE credit_key REGEXP '$gsancorderno' ORDER BY `Date_of_credit` ASC";
+   $q3="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC";
    $result3= mysqli_query($con, $q3);
    $y= mysqli_num_rows($result3);
    if ($y==0)
@@ -95,7 +95,7 @@ tr:nth-child(even){background-color: #f2f2f2}
    }
    else
    {
-      $q3_2="SELECT * FROM `credit_head` WHERE credit_key REGEXP '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT 0,1";
+      $q3_2="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT 0,1";
       $result3_2= mysqli_query($con, $q3_2);
 
       $rs3=mysqli_fetch_row($result3_2);
@@ -121,7 +121,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
      
      $y=$y-1;
-      $q3_1="SELECT * FROM `credit_head` WHERE credit_key REGEXP '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $y,1";
+      $q3_1="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $y,1";
       $result3_1= mysqli_query($con, $q3_1);
       $rs3=mysqli_fetch_row($result3_1);
       $d2=$rs3[1];
@@ -205,7 +205,7 @@ tr:nth-child(even){background-color: #f2f2f2}
          $flag=0;
          label:
             // echo "chindex: $chindex <br>";
-           $qry="SELECT * FROM `credit_head` WHERE credit_key REGEXP '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $chindex,1";
+           $qry="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $chindex,1";
             $res= mysqli_query($con, $qry);
             $rs=mysqli_fetch_row($res);
             $ldate=$rs[1];
@@ -264,9 +264,9 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<b><font size=\"3\"> GRANTS RECEIVED : ";
             //echo"HI";
             if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
         else {
-              $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+              $qrye="Select * FROM grant_rec WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
         }
         
             $resulte= mysqli_query($con, $qrye);
@@ -288,7 +288,7 @@ tr:nth-child(even){background-color: #f2f2f2}
          label2:
              //echo"dhindex : $dhindex <br>";
              //echo "chindex: $chindex <br>";
-           $qryd="SELECT * FROM `debit_head` WHERE debit_key REGEXP '$gsancorderno' ORDER BY `Date_of_debit`,`Amount` ASC LIMIT $dhindex,1";
+           $qryd="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit`,`Amount` ASC LIMIT $dhindex,1";
             $resd= mysqli_query($con, $qryd);
             $rsd=mysqli_fetch_row($resd);
             $ldated=$rsd[1];
@@ -350,9 +350,9 @@ tr:nth-child(even){background-color: #f2f2f2}
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
             //echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
               else
-                        $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+                        $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);
             if($n1==0)
@@ -401,7 +401,7 @@ tr:nth-child(even){background-color: #f2f2f2}
          $flag=0;
          labelx:
             // echo "chindex: $chindex <br>";
-           $qry="SELECT * FROM `credit_head` WHERE credit_key REGEXP '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $chindex,1";
+           $qry="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $chindex,1";
             $res= mysqli_query($con, $qry);
             $rs=mysqli_fetch_row($res);
             $ldate=$rs[1];
@@ -459,9 +459,9 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<b><font size=\"3\"> GRANTS RECEIVED : ";
             //echo"HI";
             if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
         else {
-            $qrye="Select * FROM grant_rec WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+            $qrye="Select * FROM grant_rec WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
   }
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);
@@ -482,7 +482,7 @@ tr:nth-child(even){background-color: #f2f2f2}
          $flag2=0;
          labelx2:
              //echo "chindex: $chindex <br>";
-           $qryd="SELECT * FROM `debit_head` WHERE debit_key REGEXP '$gsancorderno' ORDER BY `Date_of_debit` ASC LIMIT $dhindex,1";
+           $qryd="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit` ASC LIMIT $dhindex,1";
             $resd= mysqli_query($con, $qryd);
             $rsd=mysqli_fetch_row($resd);
             $ldated=$rsd[1];
@@ -540,9 +540,9 @@ tr:nth-child(even){background-color: #f2f2f2}
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
             //echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
+            $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syearr'";
         else {
-            $qrye="Select * FROM expenditure WHERE sanc_key REGEXP '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
+            $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year REGEXP '$syear'";
   }
             $resulte= mysqli_query($con, $qrye);
             $n1= mysqli_num_rows($resulte);

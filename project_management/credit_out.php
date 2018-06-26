@@ -64,7 +64,7 @@ $month=date("F", strtotime($date));
 $year=date("Y", strtotime($date));
 
 //echo"$month , $year";
-$q1="SELECT * FROM `grant_rec` WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key REGEXP '$gsanc' ";
+$q1="SELECT * FROM `grant_rec` WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key = '$gsanc' ";
 $result = mysqli_query($con,$q1);
 $num_rows = mysqli_num_rows($result);
 
@@ -89,7 +89,7 @@ else
     $amount2=$amount1+$gamount;
     
     //echo"$amount1";
-    $q3="UPDATE `grant_rec` SET `amount`='$amount2' WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key REGEXP '$gsanc'";
+    $q3="UPDATE `grant_rec` SET `amount`='$amount2' WHERE month REGEXP '$month' AND year REGEXP '$year' AND sanc_key = '$gsanc'";
     
      if(! $resultt = mysqli_query($con,$q3 ))
                    {
@@ -105,7 +105,7 @@ else
 if($gsubhead=="UNALLOCATED")
 {
   
-    $q1="SELECT * FROM `unallocated` WHERE sanc_key REGEXP '$gsanc' ";
+    $q1="SELECT * FROM `unallocated` WHERE sanc_key = '$gsanc' ";
   $result = mysqli_query($con,$q1);
   $num_rows = mysqli_num_rows($result);
 
@@ -130,7 +130,7 @@ if($gsubhead=="UNALLOCATED")
       $amount2=$amount1+$gamount;
       
       //echo"$amount1";
-      $q3="UPDATE `unallocated` SET `amount`='$amount2' WHERE sanc_key REGEXP '$gsanc'";
+      $q3="UPDATE `unallocated` SET `amount`='$amount2' WHERE sanc_key = '$gsanc'";
       
        if(! $resultt = mysqli_query($con,$q3 ))
                      {
@@ -150,7 +150,7 @@ if ($month=="January" || $month == "February" || $month == "March")
   $year=$year-1;
 }
 
-$q1="SELECT * FROM `modify` WHERE year REGEXP '$year' AND sanc_key REGEXP '$gsanc' ";
+$q1="SELECT * FROM `modify` WHERE year REGEXP '$year' AND sanc_key = '$gsanc' ";
 $result = mysqli_query($con,$q1);
 $num_rows = mysqli_num_rows($result);
 
@@ -167,7 +167,7 @@ else
 
 {
   // echo "in else";
-  $q3="UPDATE `modify` SET `x`=1 WHERE year REGEXP '$year' AND sanc_key REGEXP '$gsanc'";
+  $q3="UPDATE `modify` SET `x`=1 WHERE year REGEXP '$year' AND sanc_key = '$gsanc'";
   $resultt = mysqli_query($con,$q3 );
 
 }

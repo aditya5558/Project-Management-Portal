@@ -103,7 +103,8 @@ tr:nth-child(even){background-color: #f2f2f2}
   $gsancorderno=$_GET["sancorderno"];
  // $gyear=$_GET["year"];
   
-  $q1="SELECT * FROM `debit_head` WHERE debit_key REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno'";
+//   echo $q1;
   $result= mysqli_query($con, $q1);
   $num_row=0;
   

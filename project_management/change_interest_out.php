@@ -102,7 +102,7 @@ tr:nth-child(even){background-color: #f2f2f2}
   $gsancorderno=$_GET["sancorderno"];
  // $gyear=$_GET["year"];
   
-  $q1="SELECT * FROM `interest` WHERE sanc_key REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `interest` WHERE sanc_key = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
   $num_row=0;
   

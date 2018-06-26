@@ -45,7 +45,7 @@ and open the template in the editor.
         // echo "in loop!";
   			  $year = $_GET["y".$i];
   			  $interest = $_GET["i".$i];
-              $q6="UPDATE `interest` SET `interest`='$interest' WHERE sanc_key REGEXP '$gsancorderno' AND year = $year ";
+              $q6="UPDATE `interest` SET `interest`='$interest' WHERE sanc_key = '$gsancorderno' AND year = $year ";
 
 
                 if(  ! $resultt = mysqli_query($con,$q6))

@@ -49,7 +49,7 @@
         $grantDate = isset($_REQUEST["date4"]) ? $_REQUEST["date4"] : "";
         $fgrantDate= date('Y-m-d', strtotime($grantDate));
 
-$q3="UPDATE managedata SET `ProjSancAuth`='$gsanc',`Subagency`='$gsubagency',`AddressSancAuth`='$gaddsanc',`ProjTitle`='$gprojtitle',`SancDate`='$fsancDate',`Dept`='$gdept',`PrincInv`='$gprincinv',`CoCord`='$gcocord',`Cost`='$gcost',`Duration`='$gdur',`Status`='$gstatus',`StartDate`='$fstartDate',`EndDate`='$fendDate',`Dateofrec`='$fgrantDate' WHERE Sancorderno REGEXP '$gsancorderno'";
+$q3="UPDATE managedata SET `ProjSancAuth`='$gsanc',`Subagency`='$gsubagency',`AddressSancAuth`='$gaddsanc',`ProjTitle`='$gprojtitle',`SancDate`='$fsancDate',`Dept`='$gdept',`PrincInv`='$gprincinv',`CoCord`='$gcocord',`Cost`='$gcost',`Duration`='$gdur',`Status`='$gstatus',`StartDate`='$fstartDate',`EndDate`='$fendDate',`Dateofrec`='$fgrantDate' WHERE Sancorderno = '$gsancorderno'";
  $result= mysqli_query($con, $q3);
 
    if(! $result = mysqli_query($con,$q3 ))

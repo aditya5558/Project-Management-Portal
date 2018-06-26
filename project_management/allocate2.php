@@ -104,9 +104,9 @@ select {
   setcookie('gsanc', $gsancorderno);
  // $gyear=$_GET["year"];
 
-  $q1="SELECT * FROM `managedata` WHERE Sancorderno REGEXP '$gsancorderno'";
+  $q1="SELECT * FROM `managedata` WHERE Sancorderno = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
-    $q1="SELECT * FROM `managedata` WHERE Sancorderno REGEXP '$gsancorderno'";
+    $q1="SELECT * FROM `managedata` WHERE Sancorderno = '$gsancorderno'";
   $result= mysqli_query($con, $q1);
 
   $rs=mysqli_fetch_array($result);
@@ -119,7 +119,7 @@ select {
   echo "<tr><td><b>PROJECT TITLE </b></td> <td>$title </td></tr>";
   echo "<tr><td><b>PRINCIPLE INVESTIGATOR</b> </td> <td>$pinv </td></tr>";
 
-  $q2 = "SELECT * FROM 	`unallocated` WHERE sanc_key REGEXP '$gsancorderno'";
+  $q2 = "SELECT * FROM 	`unallocated` WHERE sanc_key = '$gsancorderno'";
   $result= mysqli_query($con, $q2);
 
   if(mysqli_num_rows($result)==0)
