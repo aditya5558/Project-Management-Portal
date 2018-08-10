@@ -72,7 +72,8 @@ tr:nth-child(even){background-color: #f2f2f2}
    $result2= mysqli_query($con, $q2);
    $x= mysqli_num_rows($result2);
    $x=$x-1;
-   //echo"$x";
+  //  echo"check here";
+  //  echo $x;
     $q2_1="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit` ASC LIMIT $x,1";
     $result2_1= mysqli_query($con, $q2_1);
     if($x!=-1)
@@ -84,7 +85,7 @@ tr:nth-child(even){background-color: #f2f2f2}
       $d1=0;
     
     //echo"$rs2[1]<br><br>";
-   
+    // echo " 1 x : $x <br>";
    $q3="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC";
    $result3= mysqli_query($con, $q3);
    $y= mysqli_num_rows($result3);
@@ -133,12 +134,13 @@ tr:nth-child(even){background-color: #f2f2f2}
    
    $syearr=$syear+1;
    $init_year = $syear;
+  //  echo "2 x : $x <br>";
     echo "<b><center><font size=\"5\">FINANCIAL YEAR : $syear - $syearr </font></b></center><br><br><br>";
      while(!(($smindex==$emindex)&&($syear==$eyear)))
      {
           if($smindex==0&&$syear!=$init_year)
            echo "<b><center><font size=\"5\">FINANCIAL YEAR : $syear - $syearr </font></b></center><br><br><br>";
-
+          //  echo "3 x : $x <br>";
          //if($smindex==9)
             // echo"hi";
       echo"<center>----------------------------------------------------------------------------------------------------------------------------------</center><br>";
@@ -151,6 +153,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             // echo "chindex: $chindex <br>";
            $qry="SELECT * FROM `credit_head` WHERE credit_key = '$gsancorderno' ORDER BY `Date_of_credit` ASC LIMIT $chindex,1";
             $res= mysqli_query($con, $qry);
+            //  echo $x;;
             $rs=mysqli_fetch_row($res);
             $ldate=$rs[1];
             $lmonth=date("F", strtotime($ldate));
@@ -182,7 +185,9 @@ tr:nth-child(even){background-color: #f2f2f2}
        <td>$rs[4]</td>
     </tr>
     
+    
   </table>";
+  //
             //echo "<br><br> ";
             ++$chindex;
             $flag=1;
@@ -230,10 +235,13 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<br><br><b><font size=\"3\"> DEBIT HEADS </font></b><br>";
          $flag2=0;
          label2:
-             //echo"dhindex : $dhindex <br>";
+            //  echo"dhindex : $dhindex <br>";
              //echo "chindex: $chindex <br>";
+            // echo $dhindex;
            $qryd="SELECT * FROM `debit_head` WHERE debit_key = '$gsancorderno' ORDER BY `Date_of_debit`,`Amount` ASC LIMIT $dhindex,1";
-            $resd= mysqli_query($con, $qryd);
+          //  echo $qryd; 
+          //  echo "x : $x <br>";
+           $resd= mysqli_query($con, $qryd);
             $rsd=mysqli_fetch_row($resd);
             $ldated=$rsd[1];
             $lmonthd=date("F", strtotime($ldated));
@@ -257,7 +265,7 @@ tr:nth-child(even){background-color: #f2f2f2}
              
             if($lmonthd==$arr[$smindex]&& $lyeard==$syear)
             {
-              //echo "$lmonthd $lyeard $dhindex<br>";
+              echo "$lmonthd $lyeard $dhindex<br>";
                echo "<table>
     
     <tr>
@@ -273,8 +281,10 @@ tr:nth-child(even){background-color: #f2f2f2}
             ++$dhindex;
             $flag2=1;
             // echo "lmonthb : $lmonth <br> chindex : $chindex <br>";
+            // echo "before goto place : $dhindex $x"  ;
             if($dhindex<=$x)
-            {//echo "$chindex";    
+            {//echo "$chindex";  
+              // echo "in goto place : $dhindex $x"  ;
             goto label2;
             }
             }
@@ -292,7 +302,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             echo "<br><br>";
             //--------------------------------------------------------------------------------------------------------
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
-            //echo"HI";
+            // echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
             $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
               else
@@ -341,9 +351,9 @@ tr:nth-child(even){background-color: #f2f2f2}
                   // $n1= mysqli_num_rows($resultex);
 
                   $arrr=mysqli_fetch_row($resultex);
-                  $x=$arrr[2];
+                  $xx=$arrr[2];
 
-                  if($x==0)
+                  if($xx==0)
                   
                   {
                     // echo "in else then if";
@@ -534,7 +544,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             </table>";}
              //--------------------------------------------------------------------------------------------------------
               echo "<b><font size=\"3\"> MONTHLY EXPENDITURE : ";
-            //echo"HI";
+            // echo"HI";
               if($smindex==9||$smindex==10||$smindex==11)
             $qrye="Select * FROM expenditure WHERE sanc_key = '$gsancorderno' AND month REGEXP '$arr[$smindex]' AND year = $syearr";
         else {
@@ -587,9 +597,9 @@ tr:nth-child(even){background-color: #f2f2f2}
 
                   $arrr=mysqli_fetch_row($resultex);
                  
-                  $x=$arrr[2];
+                  $xx=$arrr[2];
 
-                  if($x==0)
+                  if($xx==0)
                   
                   {
                     // echo "in else then if";
