@@ -208,7 +208,7 @@ $fields_num = mysqli_num_fields($resultt);
 for($i=0; $i<$fields_num-1; $i++)
 {
     $field = mysqli_fetch_field($resultt);
-     echo "<input required type=\"checkbox\" name={$i} checked>{$field->name} <br>";
+     echo "<input type=\"checkbox\" name={$i} checked>{$field->name} <br>";
 
 }
 
