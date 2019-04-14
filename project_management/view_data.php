@@ -9,11 +9,83 @@ and open the template in the editor.
         <script language="javascript" src="calendar.js"></script>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+        input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+table {
+    border-collapse: collapse;
+    margin-top: -250px;
+
+}
+
+td {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    padding-right: 1.0em;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: lightblue;
+  color: black;
+  border: none;
+  text-align: center;
+  font-size:15px;
+  padding: 12px;
+
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+select {
+
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+</style>
     </head>
-   <body style="background-color:powderblue;">
+   <body>
        <div id="container" style="width:100%;">
-  <div id="left" style="float:left; width:50%;">
-          <form action="somewhere.php" method="post">
+  <div id="left" style="float:left; width:70%;">
+         
 <?php
 //get class into the page
 require_once('classes/tc_calendar.php');
@@ -23,18 +95,17 @@ require_once('classes/tc_calendar.php');
 
 
 
-echo '<br>';
+// echo '<br>';
 
 
 
 ?>
-</form>
+
         <b>SELECT STATUS</b>
        <form name="output" action="output.php">
   <input type="radio" name="status" value=".*"checked> ALL<br>
   <input type="radio" name="status" value="Completed"> COMPLETED<br>
-  <input type="radio" name="status" value="Ongoing"> ONGOING <br><br><br>
-
+  <input type="radio" name="status" value="Ongoing"> ONGOING <table width="90%">
  <?php
        $con = mysqli_connect("localhost", "phpuser", "phpuserpw");
   if (!$con) {
@@ -47,8 +118,9 @@ echo '<br>';
 
    $result=mysqli_query($con, "SELECT ProjTitle FROM managedata ");
 
-   echo '<b>SELECT PROJECT TITLE   </b>';
-echo '<select name="projtitle">';
+   // echo '<table width="80%">';
+   echo '<tr><td><b>SELECT PROJECT TITLE   </b></td>';
+echo '<td><select  style="width: 300px" name="projtitle">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -57,12 +129,12 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
+echo '</select></td></tr>';
 
 $result=mysqli_query($con, "SELECT DISTINCT Sancorderno FROM managedata ");
 
-   echo '<br><br><b>SELECT SANCTION ORDER NUMBER   </b>';
-echo '<select name="sancorderno">';
+   echo '<br><br><tr><td><b>SELECT SANCTION ORDER NUMBER   </b></td>';
+echo '<td><select style="width: 300px" name="sancorderno">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -71,11 +143,11 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
+echo '</select></td></tr>';
 
- echo '<br><br><b>SELECT DEPARTMENT   </b>';
+ echo '<br><br><tr><td><b>SELECT DEPARTMENT   </b></td>';
  $result=mysqli_query($con, "SELECT DISTINCT Dept FROM managedata ");
-echo '<select name="dept">';
+echo '<td><select style="width: 300px" name="dept">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -84,11 +156,11 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
-echo '<br><br><b>SELECT PRINCIPAL INVESTIGATOR   </b>';
+echo '</select></td></tr>';
+echo '<br><br><tr><td><b>SELECT PRINCIPAL INVESTIGATOR   </b></td>';
 
   $result=mysqli_query($con, "SELECT DISTINCT PrincInv FROM managedata ");
-echo '<select name="princinv">';
+echo '<td><select style="width: 300px" name="princinv">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -97,11 +169,11 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
+echo '</select></td></tr>';
 
-echo '<br><br><b>SELECT CO-COARDINATOR   </b>';
+echo '<br><br><tr><td><b>SELECT CO-COARDINATOR   </b></td>';
 $result=mysqli_query($con, "SELECT DISTINCT CoCord FROM managedata ");
-echo '<select name="cocord">';
+echo '<td><select style="width: 300px" name="cocord">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -110,11 +182,11 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
+echo '</select></td></tr>';
 
-echo '<br><br><b>SELECT SUB AGENCY   </b>';
+echo '<br><br><tr><td><b>SELECT SUB AGENCY   </b></td>';
 $result=mysqli_query($con, "SELECT DISTINCT Subagency FROM managedata ");
-echo '<select name="subagency">';
+echo '<td><select style="width: 300px" name="subagency">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -125,11 +197,11 @@ while($rs=mysqli_fetch_array($result)){
 
 
 
-echo '</select>';
+echo '</select></td></tr>';
 
-echo '<br><br><b>SELECT DURATION   </b>';
+echo '<br><br><tr><td><b>SELECT DURATION   </b></td>';
 $result=mysqli_query($con, "SELECT DISTINCT Duration FROM managedata ");
-echo '<select name="duration">';
+echo '<td><select style="width: 300px" name="duration">';
 
  echo '<option value=".*">all</option>';
 while($rs=mysqli_fetch_array($result)){
@@ -138,68 +210,72 @@ while($rs=mysqli_fetch_array($result)){
 
 }
 
-echo '</select>';
-echo '<br><br><b>SELECT RANGE FOR DATE OF SANCTION   </b><br>';
-echo 'FROM  ';
+echo '</select></td></tr>';
+echo '<br><br><tr><td></td></tr><tr style="border-top:1px solid black"><td rowspan= "2" style="border-bottom:1px solid black "><b>SELECT RANGE FOR DATE OF SANCTION   </b></td><br>';
+
+echo '<td><b>FROM</b>  ';
 $myCalendar = new tc_calendar("date1", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
 $myCalendar->setDate(02, 01, 1961);
 $myCalendar->setYearInterval(1960, 2026);
   $myCalendar->dateAllow('1961-01-01', '2026-12-31');
 $myCalendar->writeScript();
-echo ' ';
+echo '</td></tr> ';
 
+echo '<tr style="border-bottom:1px solid black"><td><b>TO</b>  ';
 $myCalendar = new tc_calendar("date2", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
-$myCalendar->setDate(30, 12, 2016);
+$myCalendar->setDate(30, 12, 2026);
 $myCalendar->setYearInterval(1960, 2026);
 $myCalendar->dateAllow('1960-01-01', '2026-12-31');
-echo 'TO  ';
+
 
 $myCalendar->writeScript();
 
-echo '<br><br><b>SELECT RANGE FOR START DATE OF PROJECT   </b><br>';
-echo 'FROM  ';
+echo '</td></tr><br><br><tr><td rowspan= "2" style="border-bottom:1px solid black"><b>SELECT RANGE FOR START DATE OF PROJECT   </b></td><br>';
+echo '<td><b>FROM</b>  ';
 $myCalendar = new tc_calendar("date3", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
 $myCalendar->setDate(02, 01, 1961);
 $myCalendar->setYearInterval(1960, 2026);
   $myCalendar->dateAllow('1961-01-01', '2026-12-31');
 $myCalendar->writeScript();
-echo ' ';
+echo '</td></tr> ';
 
 $myCalendar = new tc_calendar("date4", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
-$myCalendar->setDate(30, 12, 2016);
+$myCalendar->setDate(30, 12, 2026);
 $myCalendar->setYearInterval(1960, 2026);
 $myCalendar->dateAllow('1960-01-01', '2026-12-31');
-echo 'TO  ';
+echo '<tr style="border-bottom:1px solid black"><td><b>TO</b>  ';
 
 $myCalendar->writeScript();
 
-echo '<br><br><b>SELECT RANGE FOR END DATE OF PROJECT  </b><br>';
-echo 'FROM  ';
+echo '</td></tr><br><br><tr><td rowspan= "2" style="border-bottom:1px solid black"><b>SELECT RANGE FOR END DATE OF PROJECT  </b></td><br>';
+echo '<td><b>FROM</b>  ';
 $myCalendar = new tc_calendar("date5", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
 $myCalendar->setDate(02, 01, 1961);
 $myCalendar->setYearInterval(1960, 2026);
   $myCalendar->dateAllow('1961-01-01', '2026-12-31');
 $myCalendar->writeScript();
-echo ' ';
+echo '</td></tr> ';
 
 $myCalendar = new tc_calendar("date6", true);
 $myCalendar->setIcon("images/iconCalendar.gif");
 $myCalendar->setDate(30, 12, 2026);
 $myCalendar->setYearInterval(1960, 2026);
 $myCalendar->dateAllow('1960-01-01', '2026-12-31');
-echo 'TO  ';
+echo '<tr><td style="border-bottom:1px solid black"><b>TO</b>  ';
 
 $myCalendar->writeScript();
+echo '</td></tr></table>';
 ?>
+
   </div>
 
 
-<div id="right" style="float:right; width:50%;">
+<div id="right" style="float:right; width:30%;">
     <b>SELECT OUTPUT PARAMETERS</b><br><br>
      <?php
 $resultt=mysqli_query($con, "SELECT * FROM managedata ");
